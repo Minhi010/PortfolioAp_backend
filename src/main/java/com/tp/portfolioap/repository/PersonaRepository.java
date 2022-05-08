@@ -1,4 +1,4 @@
-package com.tp.portfolioap.repo;
+package com.tp.portfolioap.repository;
 
 import java.util.Optional;
 
@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.tp.portfolioap.model.Persona;
 
-public interface PersonaRepo extends JpaRepository<Persona, Long>{
+public interface PersonaRepository extends JpaRepository<Persona, Long>{
 	Optional<Persona> findByMail(String mail);
 }

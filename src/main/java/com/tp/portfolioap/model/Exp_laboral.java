@@ -11,13 +11,13 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Habilidad {
+public class Exp_laboral {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false, updatable = false)
-	private Long idHabilidad;
-	private String tecnologia;
-	private String nivel;
+	@Column(nullable= false, updatable = false)
+	private Long idExplaboral;
+	private String trabajo;
+	private String periodo;
 	private String descripcion;
 }

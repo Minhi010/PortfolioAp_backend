@@ -1,4 +1,4 @@
-package com.tp.portfolioap.resource;
+package com.tp.portfolioap.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import com.tp.portfolioap.service.PersonaService;
 
 @RestController
 @RequestMapping("/persona")
-public class PersonaResource {
+public class PersonaController {
 	private final PersonaService personaService;
 	
-	public PersonaResource(PersonaService personaService) {
+	public PersonaController(PersonaService personaService) {
 		this.personaService = personaService;
 	}
 	
