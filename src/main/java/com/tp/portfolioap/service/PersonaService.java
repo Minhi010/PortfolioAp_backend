@@ -32,7 +32,5 @@ public class PersonaService {
 	public void deletePersona(Long idPersona) {
 		personaRepository.deleteById(idPersona);
 	}
-	public Persona findByEmail(String mail) {
-		return personaRepository.findByMail(mail).orElse(null);
-	}
+
 }
