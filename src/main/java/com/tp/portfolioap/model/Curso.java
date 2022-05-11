@@ -21,6 +21,7 @@ public class Curso {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable= false, updatable = false)
 	private Long idCurso;
+	private String nombreCurso;
 	private String institucion;
 	private String fotoInstitucion;
 	private String duracion;
