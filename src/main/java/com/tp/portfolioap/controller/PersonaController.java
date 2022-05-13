@@ -13,22 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tp.portfolioap.model.Persona;
+import com.tp.portfolioap.service.Exp_laboralService;
 import com.tp.portfolioap.service.PersonaService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/persona")
+@RequiredArgsConstructor
 public class PersonaController {
 	private final PersonaService personaService;
-	
-	public PersonaController(PersonaService personaService) {
-		this.personaService = personaService;
-	}
 	
 	@GetMapping("/all")
 	public ResponseEntity<List<Persona>>getAllPersona(){
 		List<Persona> persona = personaService.findAllPersona();
 		return new ResponseEntity<>(persona, HttpStatus.OK);
 	}
+	@GetMapping("/miperfil")
+	public ResponseEntity<Persona> getPerfil(){
+		Persona persona = personaService.findPersonaById(1L);
+		return new ResponseEntity<>(persona, HttpStatus.OK);
+	}
+	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Persona>getPersonaById(@PathVariable("id")Long id){
 		Persona persona = personaService.findPersonaById(id);
@@ -42,7 +48,7 @@ public class PersonaController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<Persona> updatePersona(@RequestBody Persona persona){
+	public ResponseEntity<?> updatePersona(@RequestBody Persona persona){
 		Persona updatePersona = personaService.addPersona(persona);
 		return new ResponseEntity<>(updatePersona, HttpStatus.OK);
 	}

@@ -12,19 +12,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tp.portfolioap.model.Curso;
+import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.model.Proyecto;
 import com.tp.portfolioap.service.CursoService;
+import com.tp.portfolioap.service.Exp_laboralService;
 import com.tp.portfolioap.service.ProyectoService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/proyectos")
+@RequiredArgsConstructor
 public class ProyectoController {
 	private final ProyectoService proyectoService;
-
-	public ProyectoController(ProyectoService proyectoService) {
-		this.proyectoService=proyectoService;
-	}
-
+	private final Long IDPERSONA=1L; 
+	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Proyecto> getProyectoById(@PathVariable("id") Long id) {
 		Proyecto proyectos = proyectoService.findProyectoById(id);
@@ -33,12 +35,23 @@ public class ProyectoController {
 
 	@PostMapping("/add")
 	public ResponseEntity<Proyecto> addCurso(@RequestBody Proyecto proyecto) {
+		Persona p = new Persona();
+		p.setIdPersona(IDPERSONA);
+		proyecto.setPersona(p);
 		Proyecto proyectos = proyectoService.addProyecto(proyecto);
 		return new ResponseEntity<>(proyectos, HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Proyecto> updateProyecto(@RequestBody Proyecto proyecto) {
+	public ResponseEntity<?> updateProyecto(@RequestBody Proyecto proyecto) {
+		Proyecto nuevoproyecto = proyectoService.findProyectoById(proyecto.getIdProyecto()); 
+		if (nuevoproyecto==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}		
+		Persona p = new Persona();
+		p.setIdPersona(IDPERSONA);
+		proyecto.setPersona(p);
+		
 		Proyecto updateProyecto = proyectoService.addProyecto(proyecto);
 		return new ResponseEntity<>(updateProyecto, HttpStatus.OK);
 	}

@@ -1,10 +1,11 @@
 package com.tp.portfolioap.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tp.portfolioap.model.Habilidad;
 import com.tp.portfolioap.repository.HabilidadRepository;
-
+@Service
 public class HabilidadService {
 	@Autowired
 	private HabilidadRepository habilidadRepository;
@@ -15,7 +16,7 @@ public class HabilidadService {
 	
 	public Habilidad findHabilidadById(Long idHabilidad) {
 		return habilidadRepository.findById(idHabilidad)
-				.orElseThrow(null);
+				.orElse(null);
 	}
 	
 	public Habilidad updateHabilidad(Habilidad habilidad) {

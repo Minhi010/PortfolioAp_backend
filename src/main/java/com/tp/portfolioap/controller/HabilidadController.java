@@ -13,18 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tp.portfolioap.model.Curso;
 import com.tp.portfolioap.model.Habilidad;
+import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.service.CursoService;
+import com.tp.portfolioap.service.Exp_laboralService;
 import com.tp.portfolioap.service.HabilidadService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/habilidades")
+@RequiredArgsConstructor
 public class HabilidadController {
 	private final HabilidadService habilidadService;
-
-	public HabilidadController(HabilidadService habilidadService) {
-		this.habilidadService=habilidadService;
-	}
-
+	private final Long IDPERSONA=1L; 
+	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Habilidad> getHabilidadById(@PathVariable("id") Long id) {
 		Habilidad habilidades =habilidadService.findHabilidadById(id);
@@ -33,12 +35,24 @@ public class HabilidadController {
 
 	@PostMapping("/add")
 	public ResponseEntity<Habilidad> addHabilidad(@RequestBody Habilidad habilidad) {
+		Persona p = new Persona();
+		p.setIdPersona(IDPERSONA);
+		habilidad.setPersona(p);
 		Habilidad habilidades = habilidadService.addHabilidad(habilidad);
 		return new ResponseEntity<>(habilidades, HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Habilidad> updateHabilidad(@RequestBody Habilidad habilidad) {
+	public ResponseEntity<?> updateHabilidad(@RequestBody Habilidad habilidad) {
+		Habilidad nuevahabilidad = habilidadService.findHabilidadById(habilidad.getIdHabilidad()); 
+		if (nuevahabilidad==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}		
+		Persona p = new Persona();
+		p.setIdPersona(IDPERSONA);
+		habilidad.setPersona(p);
+		
+		
 		Habilidad updateHabilidad = habilidadService.addHabilidad(habilidad);
 		return new ResponseEntity<>(updateHabilidad, HttpStatus.OK);
 	}

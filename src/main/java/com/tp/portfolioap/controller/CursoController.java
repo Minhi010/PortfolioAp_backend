@@ -12,16 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tp.portfolioap.model.Curso;
+import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.service.CursoService;
+import com.tp.portfolioap.service.Exp_laboralService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/cursos")
+@RequiredArgsConstructor
 public class CursoController {
 	private final CursoService cursoService;
-	
-	public CursoController(CursoService cursoService) {
-		this.cursoService=cursoService;
-	}
+	private final Long IDPERSONA=1L; 
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Curso> getCursoById(@PathVariable("id")Long id){
@@ -30,11 +32,22 @@ public class CursoController {
 	}
 	@PostMapping("/add")
 	public ResponseEntity<Curso> addCurso(@RequestBody Curso curso){
+		Persona p = new Persona();
+		p.setIdPersona(IDPERSONA);
+		curso.setPersona(p);
 		Curso cursos = cursoService.addCurso(curso);
 		return new ResponseEntity<>(cursos, HttpStatus.OK);
 	}
 	@PutMapping("/update")
-	public ResponseEntity<Curso> updateCurso(@RequestBody Curso curso){
+	public ResponseEntity<?> updateCurso(@RequestBody Curso curso){
+		Curso nuevocurso = cursoService.findCursoById(curso.getIdCurso()); 
+		if (nuevocurso==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}		
+		Persona p = new Persona();
+		p.setIdPersona(IDPERSONA);
+		curso.setPersona(p);
+		
 		Curso updateCurso = cursoService.addCurso(curso);
 		return new ResponseEntity<>(updateCurso, HttpStatus.OK);
 	}
