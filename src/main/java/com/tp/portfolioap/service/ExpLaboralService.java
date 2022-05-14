@@ -3,23 +3,23 @@ package com.tp.portfolioap.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tp.portfolioap.model.Exp_laboral;
-import com.tp.portfolioap.repository.Exp_laboralRepository;
+import com.tp.portfolioap.model.ExpLaboral;
+import com.tp.portfolioap.repository.ExpLaboralRepository;
 @Service
-public class Exp_laboralService {
+public class ExpLaboralService {
 	@Autowired
-	private Exp_laboralRepository exp_laboralRepository;
+	private ExpLaboralRepository exp_laboralRepository;
 	
-	public Exp_laboral addExp_laboral(Exp_laboral exp_laboral) {
+	public ExpLaboral addExp_laboral(ExpLaboral exp_laboral) {
 		return exp_laboralRepository.save(exp_laboral);
 	}
 	
-	public Exp_laboral findExp_laboralById(Long idExp_laboral) {
+	public ExpLaboral findExp_laboralById(Long idExp_laboral) {
 		return exp_laboralRepository.findById(idExp_laboral)
 				.orElse(null);
 	}
 	
-	public Exp_laboral updateExp_laboral(Exp_laboral exp_laboral) {
+	public ExpLaboral updateExp_laboral(ExpLaboral exp_laboral) {
 		return exp_laboralRepository.save(exp_laboral);
 	}
 	

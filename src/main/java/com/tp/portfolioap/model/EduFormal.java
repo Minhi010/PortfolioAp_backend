@@ -16,18 +16,21 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Exp_laboral {
-
+public class EduFormal {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable= false, updatable = false)
-	private Long idExplaboral;
-	private String trabajo;
+	private Long id;
+	private String titulo;
+	private String institucion;
+	private String foto;
 	private String periodo;
 	private String descripcion;
 	@ManyToOne( fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersona")
 	@JsonBackReference
 	private Persona persona;
+
 	
 }

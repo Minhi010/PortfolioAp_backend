@@ -12,45 +12,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tp.portfolioap.model.Curso;
-import com.tp.portfolioap.model.Exp_laboral;
+import com.tp.portfolioap.model.ExpLaboral;
 import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.Exp_laboralService;
+import com.tp.portfolioap.service.ExpLaboralService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/explaboral")
 @RequiredArgsConstructor
-public class Exp_laboralController {
-	private final Exp_laboralService exp_laboralService;
+public class ExpLaboralController {
+	private final ExpLaboralService exp_laboralService;
 	private final Long IDPERSONA=1L; 
 	
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Exp_laboral> getExp_laboralById(@PathVariable("id") Long id) {
-		Exp_laboral expLaboral = exp_laboralService.findExp_laboralById(id);
+	public ResponseEntity<ExpLaboral> getExp_laboralById(@PathVariable("id") Long id) {
+		ExpLaboral expLaboral = exp_laboralService.findExp_laboralById(id);
 		return new ResponseEntity<>(expLaboral, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Exp_laboral> addCurso(@RequestBody Exp_laboral exp_laboral) {
+	public ResponseEntity<ExpLaboral> addCurso(@RequestBody ExpLaboral exp_laboral) {
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		exp_laboral.setPersona(p);
-		Exp_laboral expLaboral = exp_laboralService.addExp_laboral(exp_laboral);
+		ExpLaboral expLaboral = exp_laboralService.addExp_laboral(exp_laboral);
 		return new ResponseEntity<>(expLaboral, HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<?> updateExp_laboral(@RequestBody Exp_laboral exp_laboral) {
-		Exp_laboral exp = exp_laboralService.findExp_laboralById(exp_laboral.getIdExplaboral());
+	public ResponseEntity<?> updateExp_laboral(@RequestBody ExpLaboral exp_laboral) {
+		ExpLaboral exp = exp_laboralService.findExp_laboralById(exp_laboral.getId());
 		if (exp==null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		exp_laboral.setPersona(p);
-		Exp_laboral updateExp_laboral = exp_laboralService.addExp_laboral(exp_laboral);
+		ExpLaboral updateExp_laboral = exp_laboralService.addExp_laboral(exp_laboral);
 		return new ResponseEntity<>(updateExp_laboral, HttpStatus.OK);
 	}
 

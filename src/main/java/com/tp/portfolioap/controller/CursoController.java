@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tp.portfolioap.model.Curso;
 import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.Exp_laboralService;
+import com.tp.portfolioap.service.ExpLaboralService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,19 +33,19 @@ public class CursoController {
 	@PostMapping("/add")
 	public ResponseEntity<Curso> addCurso(@RequestBody Curso curso){
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		curso.setPersona(p);
 		Curso cursos = cursoService.addCurso(curso);
 		return new ResponseEntity<>(cursos, HttpStatus.OK);
 	}
 	@PutMapping("/update")
 	public ResponseEntity<?> updateCurso(@RequestBody Curso curso){
-		Curso nuevocurso = cursoService.findCursoById(curso.getIdCurso()); 
+		Curso nuevocurso = cursoService.findCursoById(curso.getId()); 
 		if (nuevocurso==null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		curso.setPersona(p);
 		
 		Curso updateCurso = cursoService.addCurso(curso);

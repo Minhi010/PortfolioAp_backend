@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tp.portfolioap.model.Persona;
-import com.tp.portfolioap.service.Exp_laboralService;
+import com.tp.portfolioap.service.ExpLaboralService;
 import com.tp.portfolioap.service.PersonaService;
 
 import lombok.RequiredArgsConstructor;

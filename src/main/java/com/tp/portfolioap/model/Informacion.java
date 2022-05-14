@@ -20,16 +20,16 @@ import lombok.Data;
 public class Informacion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idInfo;
+	private Long id;
 	private String nombre;
 	private String apellido;
-	private LocalDate f_nacimiento; 
+	private LocalDate fechaNacimiento; 
 	private String nacionalidad; 
 	private String ocupacion;
 	private String mail;
 	private String descripcion;
-	private String f_perfil;
-	private String f_fondo;
+	private String foto;
+	private String fondo;
 	@OneToOne( fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersona")
 	@JsonBackReference

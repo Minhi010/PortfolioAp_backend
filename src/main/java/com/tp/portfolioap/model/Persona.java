@@ -23,7 +23,7 @@ public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable= false, updatable = false)
-	private Long idPersona;
+	private Long id;
 	@OneToOne(mappedBy="persona", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonManagedReference
 	private Informacion informacion;
@@ -35,10 +35,10 @@ public class Persona {
 	private List<Curso> cursos;
 	@OneToMany(mappedBy="persona", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonManagedReference
-	private List<Edu_formal> eduFormal;
+	private List<EduFormal> eduFormal;
 	@OneToMany(mappedBy="persona", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonManagedReference
-	private List<Exp_laboral> expLaboral;
+	private List<ExpLaboral> expLaboral;
 	@OneToMany(mappedBy="persona", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JsonManagedReference
 	private List<Proyecto> proyectos;

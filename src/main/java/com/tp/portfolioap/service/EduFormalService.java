@@ -3,23 +3,23 @@ package com.tp.portfolioap.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tp.portfolioap.model.Edu_formal;
-import com.tp.portfolioap.repository.Edu_formalRepository;
+import com.tp.portfolioap.model.EduFormal;
+import com.tp.portfolioap.repository.EduFormalRepository;
 @Service
-public class Edu_formalService {
+public class EduFormalService {
 	@Autowired
-	private Edu_formalRepository edu_formalRepository;
+	private EduFormalRepository edu_formalRepository;
 	
-	public Edu_formal addEdu_formal(Edu_formal edu_formal) {
+	public EduFormal addEdu_formal(EduFormal edu_formal) {
 		return edu_formalRepository.save(edu_formal);
 	}
 	
-	public Edu_formal findEdu_formalById(Long idEduformal) {
+	public EduFormal findEdu_formalById(Long idEduformal) {
 		return edu_formalRepository.findById(idEduformal)
 				.orElseThrow(null);
 	}
 	
-	public Edu_formal updateEdu_formal(Edu_formal edu_formal) {
+	public EduFormal updateEdu_formal(EduFormal edu_formal) {
 		return edu_formalRepository.save(edu_formal);
 	}
 	

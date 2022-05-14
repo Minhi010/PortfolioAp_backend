@@ -20,10 +20,10 @@ public class Curso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable= false, updatable = false)
-	private Long idCurso;
-	private String nombreCurso;
+	private Long id;
+	private String nombre;
 	private String institucion;
-	private String fotoInstitucion;
+	private String foto;
 	private String duracion;
 	private String descripcion;
 	@ManyToOne( fetch=FetchType.LAZY)

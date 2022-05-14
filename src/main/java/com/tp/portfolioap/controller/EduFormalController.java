@@ -12,48 +12,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tp.portfolioap.model.Curso;
-import com.tp.portfolioap.model.Edu_formal;
+import com.tp.portfolioap.model.EduFormal;
 import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.Edu_formalService;
-import com.tp.portfolioap.service.Exp_laboralService;
+import com.tp.portfolioap.service.EduFormalService;
+import com.tp.portfolioap.service.ExpLaboralService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/eduformal")
 @RequiredArgsConstructor
-public class Edu_formalController {
+public class EduFormalController {
 
-	private final Edu_formalService edu_formalService;
+	private final EduFormalService edu_formalService;
 	private final Long IDPERSONA=1L; 
 	
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Edu_formal> getEdu_formalById(@PathVariable("id") Long id) {
-		Edu_formal edu_formal = edu_formalService.findEdu_formalById(id);
+	public ResponseEntity<EduFormal> getEdu_formalById(@PathVariable("id") Long id) {
+		EduFormal edu_formal = edu_formalService.findEdu_formalById(id);
 		return new ResponseEntity<>(edu_formal, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Edu_formal> addEdu_formal(@RequestBody Edu_formal edu_formal) {
+	public ResponseEntity<EduFormal> addEdu_formal(@RequestBody EduFormal edu_formal) {
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		edu_formal.setPersona(p);
-		Edu_formal eduformal = edu_formalService.addEdu_formal(edu_formal);
+		EduFormal eduformal = edu_formalService.addEdu_formal(edu_formal);
 		return new ResponseEntity<>(eduformal, HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<?> updateEdu_formal(@RequestBody Edu_formal edu_formal) {
-		Edu_formal nuevaedu = edu_formalService.findEdu_formalById(edu_formal.getIdEduformal()); 
+	public ResponseEntity<?> updateEdu_formal(@RequestBody EduFormal edu_formal) {
+		EduFormal nuevaedu = edu_formalService.findEdu_formalById(edu_formal.getId()); 
 		if (nuevaedu==null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		edu_formal.setPersona(p);
 		
-		Edu_formal updateEduformal = edu_formalService.addEdu_formal(edu_formal);
+		EduFormal updateEduformal = edu_formalService.addEdu_formal(edu_formal);
 		return new ResponseEntity<>(updateEduformal, HttpStatus.OK);
 	}
 

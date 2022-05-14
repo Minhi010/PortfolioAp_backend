@@ -21,7 +21,7 @@ public class Habilidad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false, updatable = false)
-	private Long idHabilidad;
+	private Long id;
 	private String tecnologia;
 	private String nivel;
 	private String descripcion;

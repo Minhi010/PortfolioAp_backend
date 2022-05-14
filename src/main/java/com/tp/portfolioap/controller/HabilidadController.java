@@ -15,7 +15,7 @@ import com.tp.portfolioap.model.Curso;
 import com.tp.portfolioap.model.Habilidad;
 import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.Exp_laboralService;
+import com.tp.portfolioap.service.ExpLaboralService;
 import com.tp.portfolioap.service.HabilidadService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class HabilidadController {
 	@PostMapping("/add")
 	public ResponseEntity<Habilidad> addHabilidad(@RequestBody Habilidad habilidad) {
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		habilidad.setPersona(p);
 		Habilidad habilidades = habilidadService.addHabilidad(habilidad);
 		return new ResponseEntity<>(habilidades, HttpStatus.OK);
@@ -44,12 +44,12 @@ public class HabilidadController {
 
 	@PutMapping("/update")
 	public ResponseEntity<?> updateHabilidad(@RequestBody Habilidad habilidad) {
-		Habilidad nuevahabilidad = habilidadService.findHabilidadById(habilidad.getIdHabilidad()); 
+		Habilidad nuevahabilidad = habilidadService.findHabilidadById(habilidad.getId()); 
 		if (nuevahabilidad==null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		habilidad.setPersona(p);
 		
 		

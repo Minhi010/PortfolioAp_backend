@@ -15,7 +15,7 @@ import com.tp.portfolioap.model.Curso;
 import com.tp.portfolioap.model.Informacion;
 import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.Exp_laboralService;
+import com.tp.portfolioap.service.ExpLaboralService;
 import com.tp.portfolioap.service.InformacionService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class InformacionController {
 	@PostMapping("/add")
 	public ResponseEntity<Informacion> addInformacion(@RequestBody Informacion informacion) {
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		informacion.setPersona(p);
 		
 		Informacion informaciones = informacionService.addInformacion(informacion);
@@ -45,12 +45,12 @@ public class InformacionController {
 
 	@PutMapping("/update")
 	public ResponseEntity<?> updateInformacion(@RequestBody Informacion informacion) {
-		Informacion nuevainfo = informacionService.findInformacionById(informacion.getIdInfo()); 
+		Informacion nuevainfo = informacionService.findInformacionById(informacion.getId()); 
 		if (nuevainfo==null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		informacion.setPersona(p);
 				
 		Informacion updateInformacion = informacionService.addInformacion(informacion);

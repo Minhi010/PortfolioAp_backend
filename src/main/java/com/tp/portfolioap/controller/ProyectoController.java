@@ -15,7 +15,7 @@ import com.tp.portfolioap.model.Curso;
 import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.model.Proyecto;
 import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.Exp_laboralService;
+import com.tp.portfolioap.service.ExpLaboralService;
 import com.tp.portfolioap.service.ProyectoService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class ProyectoController {
 	@PostMapping("/add")
 	public ResponseEntity<Proyecto> addCurso(@RequestBody Proyecto proyecto) {
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		proyecto.setPersona(p);
 		Proyecto proyectos = proyectoService.addProyecto(proyecto);
 		return new ResponseEntity<>(proyectos, HttpStatus.OK);
@@ -44,12 +44,12 @@ public class ProyectoController {
 
 	@PutMapping("/update")
 	public ResponseEntity<?> updateProyecto(@RequestBody Proyecto proyecto) {
-		Proyecto nuevoproyecto = proyectoService.findProyectoById(proyecto.getIdProyecto()); 
+		Proyecto nuevoproyecto = proyectoService.findProyectoById(proyecto.getId()); 
 		if (nuevoproyecto==null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		Persona p = new Persona();
-		p.setIdPersona(IDPERSONA);
+		p.setId(IDPERSONA);
 		proyecto.setPersona(p);
 		
 		Proyecto updateProyecto = proyectoService.addProyecto(proyecto);
