@@ -38,7 +38,7 @@ public class ProyectoController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Proyecto> addCurso(@RequestBody Proyecto proyecto) {
+	public ResponseEntity<Proyecto> addProyecto(@RequestBody Proyecto proyecto) {
 		Persona p = new Persona();
 		p.setId(IDPERSONA);
 		proyecto.setPersona(p);
