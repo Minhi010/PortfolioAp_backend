@@ -1,5 +1,7 @@
 package com.tp.portfolioap.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +27,12 @@ import lombok.RequiredArgsConstructor;
 public class ExpLaboralController {
 	private final ExpLaboralService exp_laboralService;
 	private final Long IDPERSONA=1L; 
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<ExpLaboral>>getAllExperiencia(){
+		List<ExpLaboral> experiencia = exp_laboralService.findAllExperiencia();
+		return new ResponseEntity<>(experiencia, HttpStatus.OK);
+	}
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<ExpLaboral> getExp_laboralById(@PathVariable("id") Long id) {

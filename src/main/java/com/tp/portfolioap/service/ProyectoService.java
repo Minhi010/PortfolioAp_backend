@@ -1,8 +1,9 @@
 package com.tp.portfolioap.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.tp.portfolioap.model.Proyecto;
 import com.tp.portfolioap.repository.ProyectoRepository;
 
@@ -10,6 +11,10 @@ import com.tp.portfolioap.repository.ProyectoRepository;
 public class ProyectoService {
 	@Autowired
 	private ProyectoRepository proyectoRepository;
+	
+	public List<Proyecto> findAllProyecto(){
+		return proyectoRepository.findAll();
+	}
 	
 	public Proyecto addProyecto(Proyecto proyecto) {
 		return proyectoRepository.save(proyecto);

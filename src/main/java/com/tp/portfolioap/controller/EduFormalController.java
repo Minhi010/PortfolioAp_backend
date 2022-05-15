@@ -1,5 +1,7 @@
 package com.tp.portfolioap.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +29,12 @@ public class EduFormalController {
 
 	private final EduFormalService edu_formalService;
 	private final Long IDPERSONA=1L; 
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<EduFormal>>getAllEducacion(){
+		List<EduFormal> educacion = edu_formalService.findAllEducacion();
+		return new ResponseEntity<>(educacion, HttpStatus.OK);
+	}
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<EduFormal> getEdu_formalById(@PathVariable("id") Long id) {

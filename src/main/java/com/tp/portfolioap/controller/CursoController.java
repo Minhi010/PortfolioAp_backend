@@ -1,5 +1,7 @@
 package com.tp.portfolioap.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +27,11 @@ public class CursoController {
 	private final CursoService cursoService;
 	private final Long IDPERSONA=1L; 
 	
+	@GetMapping("/all")
+	public ResponseEntity<List<Curso>>getAllCursos(){
+		List<Curso> curso = cursoService.findAllCurso();
+		return new ResponseEntity<>(curso, HttpStatus.OK);
+	}
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Curso> getCursoById(@PathVariable("id")Long id){
 		Curso curso = cursoService.findCursoById(id);

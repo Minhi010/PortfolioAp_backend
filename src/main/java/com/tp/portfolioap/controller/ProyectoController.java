@@ -1,5 +1,7 @@
 package com.tp.portfolioap.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,12 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.tp.portfolioap.model.Curso;
 import com.tp.portfolioap.model.Persona;
 import com.tp.portfolioap.model.Proyecto;
-import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.ExpLaboralService;
 import com.tp.portfolioap.service.ProyectoService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +24,12 @@ import lombok.RequiredArgsConstructor;
 public class ProyectoController {
 	private final ProyectoService proyectoService;
 	private final Long IDPERSONA=1L; 
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<Proyecto>>getAllProyectos(){
+		List<Proyecto> proyecto = proyectoService.findAllProyecto();
+		return new ResponseEntity<>(proyecto, HttpStatus.OK);
+	}
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Proyecto> getProyectoById(@PathVariable("id") Long id) {

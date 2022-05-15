@@ -1,14 +1,19 @@
 package com.tp.portfolioap.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.tp.portfolioap.model.EduFormal;
 import com.tp.portfolioap.repository.EduFormalRepository;
 @Service
 public class EduFormalService {
 	@Autowired
 	private EduFormalRepository edu_formalRepository;
+	
+	public List<EduFormal> findAllEducacion(){
+		return edu_formalRepository.findAll();
+	}
 	
 	public EduFormal addEdu_formal(EduFormal edu_formal) {
 		return edu_formalRepository.save(edu_formal);

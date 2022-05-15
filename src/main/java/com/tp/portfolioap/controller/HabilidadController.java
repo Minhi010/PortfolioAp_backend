@@ -1,5 +1,7 @@
 package com.tp.portfolioap.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +28,12 @@ import lombok.RequiredArgsConstructor;
 public class HabilidadController {
 	private final HabilidadService habilidadService;
 	private final Long IDPERSONA=1L; 
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<Habilidad>>getAllHabilidad(){
+		List<Habilidad> habilidad = habilidadService.findAllHabilidades();
+		return new ResponseEntity<>(habilidad, HttpStatus.OK);
+	}
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Habilidad> getHabilidadById(@PathVariable("id") Long id) {

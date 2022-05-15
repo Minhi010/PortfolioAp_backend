@@ -1,5 +1,7 @@
 package com.tp.portfolioap.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,12 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.tp.portfolioap.model.Curso;
 import com.tp.portfolioap.model.Informacion;
 import com.tp.portfolioap.model.Persona;
-import com.tp.portfolioap.service.CursoService;
-import com.tp.portfolioap.service.ExpLaboralService;
 import com.tp.portfolioap.service.InformacionService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +25,12 @@ public class InformacionController {
 	private final InformacionService informacionService;
 	private final Long IDPERSONA=1L; 
 
+	@GetMapping("/all")
+	public ResponseEntity<List<Informacion>>getAllInformacion(){
+		List<Informacion> informacion = informacionService.findAllInformacion();
+		return new ResponseEntity<>(informacion, HttpStatus.OK);
+	}
+	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Informacion> getInformacionById(@PathVariable("id") Long id) {
 		Informacion informacion = informacionService.findInformacionById(id);
