@@ -25,7 +25,7 @@ public class Proyecto {
 	private Long id;
 	private String nombre;
 	private String enlace;
-	private LocalDate fecha;
+	private String fecha;
 	private String descripcion;
 	@ManyToOne( fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersona")
