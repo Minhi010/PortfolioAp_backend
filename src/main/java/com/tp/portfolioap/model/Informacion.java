@@ -29,7 +29,7 @@ public class Informacion {
 	private String mail;
 	private String descripcion;
 	private String foto;
-	private String fondo;
+
 	@OneToOne( fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersona")
 	@JsonBackReference

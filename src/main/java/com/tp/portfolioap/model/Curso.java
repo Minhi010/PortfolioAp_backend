@@ -26,7 +26,7 @@ public class Curso {
 	private String foto;
 	private String duracion;
 	private String descripcion;
-	private String enlace;
+	
 	@ManyToOne( fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersona")
 	@JsonBackReference

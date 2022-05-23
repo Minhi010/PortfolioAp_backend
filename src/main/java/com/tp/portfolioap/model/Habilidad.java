@@ -25,6 +25,7 @@ public class Habilidad {
 	private String tecnologia;
 	private String nivel;
 	private String descripcion;
+	private String foto;
 	@ManyToOne( fetch=FetchType.LAZY)
 	@JoinColumn(name="idPersona")
 	@JsonBackReference
