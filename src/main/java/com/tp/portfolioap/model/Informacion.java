@@ -23,7 +23,7 @@ public class Informacion {
 	private Long id;
 	private String nombre;
 	private String apellido;
-	private LocalDate fechaNacimiento; 
+	private String fechaNacimiento; 
 	private String nacionalidad; 
 	private String ocupacion;
 	private String mail;
